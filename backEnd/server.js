@@ -13,7 +13,7 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('');
+mongoose.connect('mongodb+srv://dbuser:password1!@cluster0-09kjc.mongodb.net/test/issues');
 
 const connection = mongoose.connection;
 

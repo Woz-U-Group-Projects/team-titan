@@ -1,19 +1,20 @@
+
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-const Issue = require('./models/issue')
+//const Issue = require('./models/issue')
 
 
 const app = express();
-//app.get('/',(req, res) => res.send('Hello Express!'));
+app.get('/',(req, res) => res.send('Hello Express!'));
 const router = express.Router();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://dbuser:password1!@cluster0-09kjc.mongodb.net/test/issues');
+mongoose.connect('mongodb+srv://dbuser:password1!@cluster0-09kjc.mongodb.net/test?retryWrites=true&w=majority');
 
 const connection = mongoose.connection;
 

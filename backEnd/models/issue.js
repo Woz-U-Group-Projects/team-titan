@@ -1,8 +1,7 @@
+
 const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
-
-let Issue = new Schema({
+let issueSchema = new mongoose.Schema({
     title: {
         type: String
     },
@@ -21,4 +20,6 @@ let Issue = new Schema({
     }
 });
 
-export default mongoose.model('Issue', Issue);
+const Issue = mongoose.model('Issue', issueSchema);
+
+//export default Issue;

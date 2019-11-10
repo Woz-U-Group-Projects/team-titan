@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './component/list/list.component';
 import { CreateComponent } from './component/create/create.component';
 import { EditComponent } from './component/edit/edit.component';
-
+import {HttpClientModule} from '@angular/common/http';
+import { IssueService} from './issue.service';
 const routes: Routes = [
 {path: 'create', component: CreateComponent},
 {path: 'edit/:id', component: EditComponent},
@@ -27,10 +28,11 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     MatToolbarModule
   ],
-  providers: [],
+  providers: [IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

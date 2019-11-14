@@ -1,5 +1,5 @@
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 let issueSchema = new mongoose.Schema({
     title: {
@@ -21,5 +21,4 @@ let issueSchema = new mongoose.Schema({
 });
 
 const Issue = mongoose.model('Issue', issueSchema);
-
-//export default Issue;
+module.exports = Issue; 

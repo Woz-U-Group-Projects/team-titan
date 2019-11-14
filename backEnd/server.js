@@ -4,11 +4,11 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
-//const Issue = require('./models/issue')
+const Issue = require('./models/issue')
 
 
 const app = express();
-app.get('/',(req, res) => res.send('Hello Express!'));
+//app.get('/',(req, res) => res.send('Hello Express!'));
 const router = express.Router();
 
 app.use(cors());
@@ -22,16 +22,16 @@ connection.once('open', () => {
     console.log("Connected to the mongoose!");
 });
 
-router.route('/issues').get((req, res) => {
-    Issue.find((err, Issues) => {
+router.route('/test/issues').get((req, res) => {
+    Issue.find((err, Issue) => {
         if (err)
             console.log(err);
         else
-            res.json(Issues);
+            res.json(Issue);
     });
 });
 
-router.route('/issues/:id').get((req, res) => {
+router.route('/test/issues/:id').get((req, res) => {
     Issue.findById(req.params.id, (err, Issue) => {
         if (err)
             console.log(err);
@@ -41,10 +41,10 @@ router.route('/issues/:id').get((req, res) => {
     });
 });
 
-router.route('/issues/add').post ((req, res) => {
+router.route('/test/issues/add').post ((req, res) => {
     let Issue = new Issue(req.body);
-    issue.save()
-        .then(issue => {
+    Issue.save()
+        .then(Issue => {
             res.status(200).json({'issue': 'Added Issue!'});
         })
         .catch(err => {
@@ -52,18 +52,18 @@ router.route('/issues/add').post ((req, res) => {
         });
 });
 
-router.route('/issues/update/:id').post((req, res) => {
-    Issue.findById(req.params.id, (err, issue) => {
-        if (!issue)
+router.route('/test/issues/update/:id').post((req, res) => {
+    Issue.findById(req.params.id, (err, Issue) => {
+        if (!Issue)
             return next(new Error('Could not load Document'));
         else {
-            issue.title = req.body.title;
-            issue.resposible = req.body.resposible;
-            issue.description = req.body.description;
-            issue.severity = req.body.severity;
-            issue.status = req.body.status;
+            Issue.title = req.body.title;
+            Issue.resposible = req.body.resposible;
+            Issue.description = req.body.description;
+            Issue.severity = req.body.severity;
+            Issue.status = req.body.status;
 
-            issue.save().then(issue => {
+            Issue.save().then(Issue => {
                 res.json('Update Done');
             }).catch(err => {
                 res.status(400).send('Update Failed');
@@ -72,8 +72,8 @@ router.route('/issues/update/:id').post((req, res) => {
     });
 });
 
-router.route('/issues/delete/:id').get((req, res) => {
-    Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
+router.route('/test/issues/delete/:id').get((req, res) => {
+    Issue.findByIdAndRemove({_id: req.params.id}, (err, Issue) => {
         if(err)
             res.json(err);
         else

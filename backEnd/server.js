@@ -42,9 +42,9 @@ router.route('/test/issues/:id').get((req, res) => {
 });
 
 router.route('/test/issues/add').post ((req, res) => {
-    let Issue = new Issue(req.body);
-    Issue.save()
-        .then(Issue => {
+    let issue = new Issue(req.body);
+    issue.save()
+        .then(issue => {
             res.status(200).json({'issue': 'Added Issue!'});
         })
         .catch(err => {
@@ -53,17 +53,17 @@ router.route('/test/issues/add').post ((req, res) => {
 });
 
 router.route('/test/issues/update/:id').post((req, res) => {
-    Issue.findById(req.params.id, (err, Issue) => {
-        if (!Issue)
+    Issue.findById(req.params.id, (err, issue) => {
+        if (!issue)
             return next(new Error('Could not load Document'));
         else {
-            Issue.title = req.body.title;
-            Issue.resposible = req.body.resposible;
-            Issue.description = req.body.description;
-            Issue.severity = req.body.severity;
-            Issue.status = req.body.status;
+            issue.title = req.body.title;
+            issue.resposible = req.body.resposible;
+            issue.description = req.body.description;
+            issue.severity = req.body.severity;
+            issue.status = req.body.status;
 
-            Issue.save().then(Issue => {
+            issue.save().then(Issue => {
                 res.json('Update Done');
             }).catch(err => {
                 res.status(400).send('Update Failed');

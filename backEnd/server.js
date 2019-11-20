@@ -32,7 +32,7 @@ router.route('/test/issues').get((req, res) => {
 });
 
 router.route('/test/issues/:id').get((req, res) => {
-    Issue.findById(req.params.id, (err, Issue) => {
+    Issue.findById(req.params.id, (err, issue) => {
         if (err)
             console.log(err);
 
@@ -52,7 +52,7 @@ router.route('/test/issues/add').post ((req, res) => {
         });
 });
 
-router.route('/test/issues/update/:id').post((req, res) => {
+router.route('/issues/update/:id').post((req, res) => {
     Issue.findById(req.params.id, (err, issue) => {
         if (!issue)
             return next(new Error('Could not load Document'));
@@ -63,7 +63,7 @@ router.route('/test/issues/update/:id').post((req, res) => {
             issue.severity = req.body.severity;
             issue.status = req.body.status;
 
-            issue.save().then(Issue => {
+            issue.save().then(issue => {
                 res.json('Update Done');
             }).catch(err => {
                 res.status(400).send('Update Failed');
@@ -73,7 +73,7 @@ router.route('/test/issues/update/:id').post((req, res) => {
 });
 
 router.route('/test/issues/delete/:id').get((req, res) => {
-    Issue.findByIdAndRemove({_id: req.params.id}, (err, Issue) => {
+    Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
         if(err)
             res.json(err);
         else

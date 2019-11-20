@@ -8,7 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './component/list/list.component';
 import { CreateComponent } from './component/create/create.component';
 import { EditComponent } from './component/edit/edit.component';
+<<<<<<< HEAD
 
+=======
+import {HttpClientModule} from '@angular/common/http';
+import { IssueService} from './issue.service';
+>>>>>>> 3cea2f9849c7e2f480d2988d8aaebc57945948d9
 const routes: Routes = [
 {path: 'create', component: CreateComponent},
 {path: 'edit/:id', component: EditComponent},
@@ -27,10 +32,18 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     RouterModule.forRoot(routes),
     MatToolbarModule
   ],
   providers: [],
+=======
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    MatToolbarModule
+  ],
+  providers: [IssueService],
+>>>>>>> 3cea2f9849c7e2f480d2988d8aaebc57945948d9
   bootstrap: [AppComponent]
 })
 export class AppModule { }

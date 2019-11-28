@@ -1,5 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed, async } from '../../node_modules/@angular/core/testing';
+import { RouterTestingModule } from '../../node_modules/@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {

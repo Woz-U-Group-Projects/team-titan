@@ -1,7 +1,7 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from "../../node_modules/@angular/platform-browser";
+import { NgModule } from "../../node_modules/@angular/core";
+import { FormsModule } from "../../node_modules/@angular/forms";
+import { HttpClientModule } from "../../node_modules/@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { TaskDisplayComponent } from "./task-display/task-display.component";

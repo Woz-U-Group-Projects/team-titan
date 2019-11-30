@@ -1,1 +1,17 @@
-<p>list works!</p>
+<h2>Issues List</h2>
+
+<div>
+  <button (click)="add()">
+    Add
+  </button>
+</div>
+
+<ul class="issues">
+  <li *ngFor="let p of issues; let i=index;">
+    <a routerLink="/issue-details/{{p._id}}">
+      <span class="badge">{{i+1}}</span> {{i.title}}
+    </a>
+    <button class="delete" title="delete issue"
+      (click)="delete(p._id)">x</button>
+  </li>
+</ul>

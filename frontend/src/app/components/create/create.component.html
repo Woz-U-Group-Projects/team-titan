@@ -1,1 +1,16 @@
-<p>create works!</p>
+<div>
+        <h2>Add a Bug to Track</h2>
+        <div>
+          <label>Title:
+            <input [(ngModel)]="issueData.title" placeholder="Title"/>
+          </label><br>
+          <label>Describe the Problem:
+            <input [(ngModel)]="issueData.description" placeholder="Description"/>
+          </label><br>
+          <label>How bad isthe problem on a scale from 1 to 10 <br>
+                 with 1 being not too bad and 10 being the program doesn't work:
+            <input [(ngModel)]="issueData.severity" placeholder="1-10"/>
+          </label><br>
+        </div>
+        <button (click)="addIssue()">Save</button>
+      </div>

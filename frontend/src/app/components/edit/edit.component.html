@@ -1,1 +1,21 @@
-<p>edit works!</p>
+<div>
+        <h2>Update the Bug</h2>
+        <div>
+          <label> Title:
+            <input [(ngModel)]="issueData.title" placeholder="Title"/>
+          </label><br>
+          <label> Description:
+            <input [(ngModel)]="issueData.description" placeholder="Description"/>
+          </label><br>
+          <label>Severity:
+            <input [(ngModel)]="issueData.severity" placeholder="How bad is it now? 1-10"/>
+          </label><br>
+          <label> Who's fixing this?:
+                <input [(ngModel)]="issueData.responsible" placeholder="Responsible"/>
+              </label><br>
+          <label> Status:
+                    <input [(ngModel)]="issueData.status" placeholder="Open or Closed?"/>
+                  </label><br>
+        </div>
+        <button (click)="updateIssue()">Update</button>
+      </div>

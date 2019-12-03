@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-Parser')
 const mongoose = require('mongoose')
-
 const Issue = require('./models/issues')
 
 const app = express();
@@ -82,3 +81,5 @@ router.route('/test/issues/delete/:id').get((req, res) => {
 app.use('/', router);
 
 app.listen(4000, () => console.log('Hello Express Server!'));
+
+module.exports = router;

@@ -19,7 +19,8 @@ export class CreateComponent implements OnInit {
 
   addIssue() {
     this.issue.addIssues(this.issueData).subscribe((result) => {
-      this.router.navigate(['/issue-details/'+result._id]);
+        this.router.navigate(['/create']);
+      //this.router.navigate(['/issue-details/'+result._id]);
     }, (err) => {
       console.log(err);
     })

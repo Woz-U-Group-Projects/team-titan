@@ -3,8 +3,8 @@
         <div><span>Description: </span>{{issue.description}}</div>
         <div><span>Severity: </span>{{issue.severity}}</div>
         <div>
-          <button routerLink="/edit/{{issue._id}}">
-            Edit
-          </button>
+          <div class="button-row">
+            <a mat-raised-button color="primary" [routerLink]="['/edit/:issue._id']"><mat-icon>Edit</mat-icon></a>
+          </div>
         </div>
       </div>

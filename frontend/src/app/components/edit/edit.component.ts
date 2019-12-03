@@ -14,7 +14,7 @@ export class EditComponent implements OnInit {
   constructor( public issue: IssueService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.issue.getIssuesId(this.route.snapshot.params['id']).subscribe((data: {}) => {
+    this.issue.getIssue(this.route.snapshot.params['id']).subscribe((data: {}) => {
       console.log(data);
       this.issueData = data;
     });

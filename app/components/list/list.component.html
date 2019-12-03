@@ -1,17 +1,50 @@
-<h2>Issues List</h2>
 
-<div>
-  <button (click)="add()">
-    Add
-  </button>
+<div class="button-row">
+  <a mat-raised-button color="primary" [routerLink]="['/create']"><mat-icon>Add</mat-icon></a>
 </div>
+<div class="example-container mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource">
 
-<ul class="issues">
-  <li *ngFor="let p of issues; let i=index;">
-    <a routerLink="/issue-details/{{p._id}}">
-      <span class="badge">{{i+1}}</span> {{i.title}}
-    </a>
-    <button class="delete" title="delete issue"
-      (click)="delete(p._id)">x</button>
-  </li>
-</ul>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Title -->
+    <ng-container matColumnDef="Title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element" class="title-col"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Description -->
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Severity Column -->
+    <ng-container matColumnDef="Severity">
+      <th mat-header-cell *matHeaderCellDef> Severity </th>
+      <td mat-cell *matCellDef="let element"> {{element.severity}} </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <!-- Responsible Column -->
+    <ng-container matColumnDef="Responsible">
+      <th mat-header-cell *matHeaderCellDef> Responsible </th>
+      <td mat-cell *matCellDef="let element"> {{element.responsible}} </td>
+    </ng-container>
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/issue-details/', row._id]"></tr>
+  </table>
+</div>

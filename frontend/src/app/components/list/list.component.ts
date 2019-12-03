@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IssueService } from '../issue.service';
-import { ActivatedRoute, Router} from '@angular/Router';
+import { Router} from '@angular/Router';
+import { DataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -9,34 +11,39 @@ import { ActivatedRoute, Router} from '@angular/Router';
 })
 export class ListComponent implements OnInit {
 
-  issues: any =[];
+  issues: any;
+  displayedColums = ['Title', 'Description', 'Severity', 'Responsible', ' Status', 'Id'];
+  dataSource = new IssueDataSource(this.issues);
 
-  constructor(public issue: IssueService, private route: ActivatedRoute, private router: Router) { }
+
+  constructor(public issue: IssueService, private router: Router) { }
 
   ngOnInit() {
     this.getIssues();
   }
 
   getIssues() {
-    this.issues =[];
-    this.issue.getIssues().subscribe((data:{}) => {
-      console.log(data);
-      this.issues = data;
-    })
-  }
-
-  add() {
-    this.router.navigate(['/create']);
-  }
-
-  delete(id) {
-    this.issue.deleteIssue(id)
-    .subscribe(res => {
-      this.getIssues();
-    }, (err) => {
+    this.issue.getIssues()
+      .subscribe(res => {
+      console.log(res);
+      this.issues = res;
+    }, err => {
       console.log(err);
-    }
-   );
+    });
   }
 
+}
+
+export class IssueDataSource extends DataSource<any> {
+  constructor(private issue: IssueService) {
+    super()
+  }
+
+  connect(){
+    return this.issue.getIssues();
+  }
+
+  disconnect(){
+    
+  }
 }

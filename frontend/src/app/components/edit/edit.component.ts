@@ -20,12 +20,12 @@ export class EditComponent implements OnInit {
     });
   }
 
-  updateIssue() {
-    this.issue.updateIssue(this.route.snapshot.params['id'], this.issueData).subscribe((result) => {
-      this.router.navigate(['/issue-details/'+result._id]);
-    }, (err) => {
-      console.log(err);
-    });
-  }
+  //updateIssue() {
+   // this.issue.updateIssue(this.route.snapshot.params['id'], this.issueData).subscribe((result) => {
+     // this.router.navigate(['/issue-details/'+result._id]);
+   // }, (err) => {
+     // console.log(err);
+    //});
+ // }
 
 }

@@ -4,56 +4,62 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of} from 'rxjs';
 import { map, catchError, tap} from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+
+const endpoint = '/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class IssueService {
-  private endpoint = 'http://localhost:4000/test/issues';
+  
   constructor(private http: HttpClient) { }
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+  
 
   private extractData(res: Response) {
     let body = res;
-    return body || {};
+    return body || { };
   }
   // get issues
   getIssues(): Observable<any> {
-    return this.http.get(this.endpoint + 'issues').pipe(
-      map(this.extractData));
+    return this.http.get(endpoint, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   //get issues by ID
-  getIssuesId(id): Observable<any> {
-    return this.http.get(this.endpoint + 'issues/' + id).pipe(
-      map(this.extractData));
+  getIssuesId(id: string): Observable<any> {
+    const url = `${endpoint}/${id}`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
   }
 
   // post issue
-  addIssues (product): Observable<any> {
-    console.log(product);
-    return this.http.post<any>(this.endpoint + 'issues', JSON.stringify(product), this.httpOptions).pipe(
-      tap((product) => console.log(`added issues w/ id=${product.id}`)),
-      catchError(this.handleError<any>('addIssue'))
+  addIssues (data): Observable<any> {
+    console.log(data);
+    return this.http.post(endpoint, data, httpOptions).pipe(
+      catchError(this.handleError)
     );
   }
 
   // update issue
-  updateIssue (id, product): Observable<any> {
-    return this.http.put(this.endpoint + 'issues/' + id, JSON.stringify(product), this.httpOptions).pipe(
-      tap(_ => console.log(`updated product id=${id}`)),
-      catchError(this.handleError<any>('updateIssue'))
+  updateIssue (id: string, data): Observable<any> {
+    const url = `${endpoint}/${id}`;
+    return this.http.put(url, data, httpOptions).pipe(
+      catchError(this.handleError)
     );
   }
 
   //delete issue
-  deleteIssue (id): Observable<any> {
-    return this.http.delete<any>(this.endpoint + 'issues/' + id, this.httpOptions).pipe(
-      tap(_ => console.log(`deleted product id=${id}`)),
-      catchError(this.handleError<any>('deleteIssue'))
+  deleteIssue (id: string): Observable<{}> {
+    const url = `${endpoint}/${id}`;
+    return this.http.delete(url, httpOptions).pipe(
+      catchError(this.handleError)
     );
   }
   private handleError<T> (operation = 'operation', result?: T) {

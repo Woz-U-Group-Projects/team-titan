@@ -49,7 +49,7 @@ router.route('/test/issues/add').post ((req, res) => {
         });
 });
 
-router.route('/test/issues/update/:id').post((req, res) => {
+router.route('/test/issues/update/:id').put((req, res) => {
     Issue.findById(req.params.id, (err, issue) => {
         if (!issue)
             return next(new Error('Could not load Document'));
@@ -69,7 +69,7 @@ router.route('/test/issues/update/:id').post((req, res) => {
     });
 });
 
-router.route('/test/issues/delete/:id').get((req, res) => {
+router.route('/test/issues/delete/:id').delete((req, res) => {
     Issue.findByIdAndRemove({_id: req.params.id}, (err, Issue) => {
         if(err)
             res.json(err);

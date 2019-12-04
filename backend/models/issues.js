@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 
 let issueSchema = new mongoose.Schema({
+    _id: {
+        type: String
+    },
     title: {
         type: String
     },

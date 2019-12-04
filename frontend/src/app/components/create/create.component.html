@@ -1,16 +1,58 @@
-<div>
-        <h2>Add a Bug to Track</h2>
-        <div>
-          <label>Title:
-            <input [(ngModel)]="issueData.title" placeholder="Title"/>
-          </label><br>
-          <label>Describe the Problem:
-            <input [(ngModel)]="issueData.description" placeholder="Description"/>
-          </label><br>
-          <label>How bad isthe problem on a scale from 1 to 10 <br>
-                 with 1 being not too bad and 10 being the program doesn't work:
-            <input [(ngModel)]="issueData.severity" placeholder="1-10"/>
-          </label><br>
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/list']"><mat-icon>List</mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="issueForm" (ngSubmit)="onFormSubmit()">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" formControlName="title"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!issueForm.get('title').valid && issueForm.get('title').touched">Name the Bug</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Description" formControlName="description"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!issueForm.get('description').valid && issueForm.get('description').touched">What's Happening?</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="1 - 10" formControlName="severity"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!issueForm.get('severity').valid && issueForm.get('severity').touched">On a Scale from 1 - 10 how bad is the Bug?</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Responsible" formControlName="responsible"
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!issueForm.get('responsible').valid && issueForm.get('responsible').touched">who is taking care of the bug?</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Id" formControlName="_id"
+                     [errorStateMatcher]="matcher">
+              <mat-error>
+                <span *ngIf="!issueForm.get('_id').valid && issueForm.get('_id').touched">Id</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Open or Closed" formControlName="status"
+                       [errorStateMatcher]="matcher">
+                <mat-error>
+                  <span *ngIf="!issueForm.get('status').valid && issueForm.get('status').touched">Is this bug open or closed?</span>
+                </mat-error>
+              </mat-form-field>
+        <div class="button-row">
+          <button type="submit" [disabled]="!issueForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
         </div>
-        <button (click)="addIssue()">Save</button>
-      </div>
+      </form>
+    </mat-card>
+  </div>

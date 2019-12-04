@@ -40,26 +40,28 @@ export class IssueService {
   }
 
   // post issue
-  addIssues (data): Observable<issue> {
-    console.log(data);
-    return this.http.post(endpoint + '/add', data, httpOptions).pipe(
-      catchError(this.handleError)
+  addIssues(data: issue): Observable<issue> {
+    return this.http.post<issue>(endpoint + '/add', data, httpOptions).pipe(
+      tap((iss: any) => console.log(`added issue w/ id=${iss._id}`)),
+      catchError(this.handleError<issue>('addIsssue'))
     );
   }
 
   // update issue
-  updateIssue (id: any, data): Observable<issue> {
-    const url = `${endpoint}/${id}`;
+  updateIssue(id: any, data: issue): Observable<issue> {
+    const url = `${endpoint}/update/${id}`;
     return this.http.put(url, data, httpOptions).pipe(
-      catchError(this.handleError)
+      tap(_ => console.log(`updated issue w/ id=${id}`)),
+      catchError(this.handleError<any>('deleteIssue'))
     );
   }
 
   //delete issue
-  deleteIssue (id: string): Observable<{ }> {
-    const url = `${endpoint}/${id}`;
-    return this.http.delete(url, httpOptions).pipe(
-      catchError(this.handleError)
+  deleteIssue (id: any): Observable<issue> {
+    const url = `${endpoint}/delete/${id}`;
+    return this.http.delete<issue>(url, httpOptions).pipe(
+    tap(_ => console.log(`deleted issue id=${id}`)),
+    catchError(this.handleError)
     );
   }
   private handleError<T> (operation = 'operation', result?: T) {

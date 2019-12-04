@@ -31,7 +31,7 @@ export class IssueService {
   }
 
   //get issues by ID
-  getIssue(id: string): Observable<issue> {
+  getIssue(id: any): Observable<issue> {
     const url = `${endpoint}/${id}`;
     return this.http.get<issue>(url, httpOptions).pipe(
       tap(_ => console.log(`fetched issue id=${id}`)),

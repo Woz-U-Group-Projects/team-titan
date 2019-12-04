@@ -19,7 +19,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CreateComponent implements OnInit {
 
   issueForm: FormGroup;
-  _id = '';
   title = '';
   description = '';
   responsible = '';

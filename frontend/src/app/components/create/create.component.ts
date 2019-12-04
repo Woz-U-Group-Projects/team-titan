@@ -34,8 +34,8 @@ export class CreateComponent implements OnInit {
       'description' : [null, Validators.required],
       'severity' : [null, Validators.required],
       'responsible' :[null, Validators.required],
-      '_id' : [null, Validators.required],
-      'status' : [null, Validators.required]
+      //'_id' : [null, Validators.required],
+      //'status' : [null, Validators.required]
     });
   }
 

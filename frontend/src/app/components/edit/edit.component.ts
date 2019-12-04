@@ -68,7 +68,7 @@ export class EditComponent implements OnInit {
   }
   
   issueDetails() {
-    this.router.navigate(['/issue_details', this._id]);
+    this.router.navigate(['/issue-details', this._id]);
   }
 
   

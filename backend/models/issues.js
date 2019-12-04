@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
 
 let issueSchema = new mongoose.Schema({
+    _id: {
+        type: String
+    },
     title: {
         type: String
     },
@@ -23,4 +25,4 @@ let issueSchema = new mongoose.Schema({
 
 let issue = mongoose.model('Issue', issueSchema);
 
-module.exports = issue
+module.exports = issue;

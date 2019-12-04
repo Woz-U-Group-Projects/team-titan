@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IssueService } from '../issue.service';
 import { ActivatedRoute, Router} from '@angular/router';
+import { issue } from '../../../../../backend/models/issues.js';
 
 @Component({
   selector: 'app-issue-details',
@@ -9,17 +10,33 @@ import { ActivatedRoute, Router} from '@angular/router';
 })
 export class IssueDetailsComponent implements OnInit {
 
-  issues: any =[];
+  issueDetails: issue = { _id: '', title: '', description: '', severity: '', responsible: '', status: '' };
+  isLoadingResults = true;
 
-  constructor(public issue: IssueService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private issue: IssueService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.issue.getIssue(this.route.snapshot.params['id']).subscribe((data:{}) => {
-      console.log(data);
-      this.issues = data;
-    });
+    this.getIssueDetails(this.route.snapshot.params['id']);
   }
 
+  getIssueDetails(id: any) {
+    this.issue.getIssue(id)
+        .subscribe((data: any) => {
+        this.issueDetails = data;
+        console.log(this.issueDetails);
+        this.isLoadingResults = false;
+      });
+    }
   
-
+  deleteIssue(id: any) {
+    this.isLoadingResults = true;
+    this.issue.deleteIssue(id)
+      .subscribe(res => {
+        this.isLoadingResults = false;
+        this.router.navigate(['/list']);
+      }, (err) => {
+        console.log(err);
+        this.isLoadingResults = false;
+      });
+  }
 }

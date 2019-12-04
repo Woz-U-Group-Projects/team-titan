@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-Parser')
 const mongoose = require('mongoose')
-
 const Issue = require('./models/issues')
 
 const app = express();
@@ -50,7 +49,7 @@ router.route('/test/issues/add').post ((req, res) => {
         });
 });
 
-router.route('/test/issues/update/:id').post((req, res) => {
+router.route('/test/issues/update/:id').put((req, res) => {
     Issue.findById(req.params.id, (err, issue) => {
         if (!issue)
             return next(new Error('Could not load Document'));
@@ -70,7 +69,7 @@ router.route('/test/issues/update/:id').post((req, res) => {
     });
 });
 
-router.route('/test/issues/delete/:id').get((req, res) => {
+router.route('/test/issues/delete/:id').delete((req, res) => {
     Issue.findByIdAndRemove({_id: req.params.id}, (err, Issue) => {
         if(err)
             res.json(err);
@@ -82,3 +81,5 @@ router.route('/test/issues/delete/:id').get((req, res) => {
 app.use('/', router);
 
 app.listen(4000, () => console.log('Hello Express Server!'));
+
+module.exports = router;

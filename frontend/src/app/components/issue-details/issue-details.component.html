@@ -1,10 +1,31 @@
-<div *ngIf="issue" class="issue">
-        <h2>{{issue.title | uppercase}} Details</h2>
-        <div><span>Description: </span>{{issue.description}}</div>
-        <div><span>Severity: </span>{{issue.severity}}</div>
-        <div>
-          <div class="button-row">
-            <a mat-raised-button color="primary" [routerLink]="['/edit/:issue._id']"><mat-icon>Edit</mat-icon></a>
-          </div>
-        </div>
-      </div>
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/list']"><mat-icon>List</mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><h2>{{issueDetails.title}}</h2></mat-card-title>
+        <mat-card-subtitle>{{issueDetails.description}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <dl>
+          <dt>Responsible:</dt>
+          <dd>{{issueDetails.responsible}}</dd>
+          <dt>Severity:</dt>
+          <dd>{{issueDetails.severity}}</dd>
+          <dt>Status:</dt>
+          <dd>{{issueDetails.status}}</dd>
+          <dt>Id:</dt>
+          <dd>{{issueDetails._id}}</dd>
+        </dl>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-flat-button color="primary" [routerLink]="['/edit', issueDetails._id]"><mat-icon>edit</mat-icon></a>
+        <a mat-flat-button color="warn" (click)="deleteIssue(issueDetails._id)"><mat-icon>delete</mat-icon></a>
+      </mat-card-actions>
+    </mat-card>
+  </div>

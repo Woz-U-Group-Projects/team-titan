@@ -25,17 +25,17 @@ export class IssueService {
   // get issues
   getIssues(): Observable<issue[]> {
     return this.http.get<issue[]>(endpoint).pipe(
-      tap(issue => console.log('fetched issus')),
+      tap(issue => console.log('fetched issues')),
       catchError(this.handleError('getissues',[]))
       );
   }
 
   //get issues by ID
-  getIssue(id: string): Observable<issue> {
-    const url = `${endpoint}/${id}`;
+  getIssue(_id: any): Observable<issue> {
+    const url = `${endpoint}/${_id}`;
     return this.http.get<issue>(url, httpOptions).pipe(
-      tap(_ => console.log(`fetched issue id=${id}`)),
-      catchError(this.handleError<issue>(`getIssue id=${id}`))
+      tap(_ => console.log(`fetched issue id=${_id}`)),
+      catchError(this.handleError<issue>(`getIssue id=${_id}`))
       );
   }
 

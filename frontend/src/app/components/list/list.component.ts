@@ -13,7 +13,7 @@ import { issue } from '../../../../../backend/models/issues.js'
 export class ListComponent implements OnInit {
 
   
-  displayedColumns: string[] = ['title', 'severity', 'status'];
+  displayedColumns: string[] = ['title', 'severity', 'status', '_id'];
   data: issue []= [];
   //dataSource = new IssueDataSource(this.issue);
   isLoadingResults = true;

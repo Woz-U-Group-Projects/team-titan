@@ -1,0 +1,19 @@
+span {
+    font-size: 40px;
+}
+.button-row {
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mat-flat-button.mat-primary {
+    background-color: #673ab7;
+    color: white;
+  }
+  
+  .mat-flat-button.mat-primary:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #673ab7;
+  }

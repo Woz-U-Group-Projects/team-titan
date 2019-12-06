@@ -30,6 +30,9 @@ export class IssueDetailsComponent implements OnInit {
   
   deleteIssue(id: any) {
     this.isLoadingResults = true;
+    const txt = "The bug was not removed";
+    const r = confirm ("Selecting OK will remove the bug from the database!");
+    if (r == true) {
     this.issue.deleteIssue(id)
       .subscribe(res => {
         this.isLoadingResults = false;
@@ -37,6 +40,10 @@ export class IssueDetailsComponent implements OnInit {
       }, (err) => {
         console.log(err);
         this.isLoadingResults = false;
-      });
+      })
+  } else {
+    console.log(txt);
+    this.isLoadingResults = false;
   }
+ }
 }

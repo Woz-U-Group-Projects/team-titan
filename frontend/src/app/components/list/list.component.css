@@ -46,3 +46,24 @@ table {
 .mat-flat-button {
   margin: 5px;
 }
+
+th {
+  font-weight: bold;
+}
+
+.button-row {
+  margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mat-raised-button.mat-primary {
+  background-color: #673ab7;
+  color: white;
+}
+
+.mat-raised-button.mat-primary:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #673ab7;
+}

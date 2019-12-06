@@ -1,0 +1,33 @@
+dt {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.button-row {
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mat-flat-button.mat-primary {
+    background-color: #673ab7;
+    color: white;
+  }
+  
+  .mat-flat-button.mat-primary:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #673ab7;
+  }
+
+  .mat-flat-button.mat-warn {
+    background-color: #f44336;
+    color: white;
+    margin: 10px;
+  }
+  
+  .mat-flat-button.mat-warn:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+  }

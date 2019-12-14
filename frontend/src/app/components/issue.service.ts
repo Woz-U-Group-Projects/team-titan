@@ -52,7 +52,7 @@ export class IssueService {
     const url = `${endpoint}/update/${id}`;
     return this.http.put(url, data, httpOptions).pipe(
       tap(_ => console.log(`updated issue w/ id=${id}`)),
-      catchError(this.handleError<any>('deleteIssue'))
+      catchError(this.handleError<any>('updateIssue'))
     );
   }
 

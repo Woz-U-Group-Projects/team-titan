@@ -3,6 +3,7 @@ import { IssueService } from '../issue.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { of } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -34,10 +35,9 @@ export class CreateComponent implements OnInit {
       'description' : [null, Validators.required],
       'severity' : [null, Validators.required],
       'responsible' :[null, Validators.required],
-      //'_id' : [null, Validators.required],
-      //'status' : [null, Validators.required]
-    });
+    }); 
   }
+  
 
   onFormSubmit() {
     this.isLoadingResults = true;

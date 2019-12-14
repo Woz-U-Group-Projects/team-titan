@@ -23,19 +23,46 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
+<<<<<<< HEAD
           <input matInput placeholder=" Haw bad is it on a scale from 1 - 10" formControlName="severity"
                  [errorStateMatcher]="matcher">
           <mat-error>
             <span *ngIf="!issueForm.get('severity').valid && issueForm.get('severity').touched">1 is hardly an issue at all. 10 is "Oh my gosh nothing works!</span>
+=======
+          <input matInput placeholder="1 - 10" formControlName="severity"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!issueForm.get('severity').valid && issueForm.get('severity').touched">On a Scale from 1 - 10 how bad is the Bug?</span>
+>>>>>>> 408e9537b5b8ab21c3132c8d9a5924dde28cd7c5
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Responsible" formControlName="responsible"
                    [errorStateMatcher]="matcher">
             <mat-error>
+<<<<<<< HEAD
               <span *ngIf="!issueForm.get('responsible').valid && issueForm.get('responsible').touched">Who is taking care of the bug? If unsure put "N/A"</span>
             </mat-error>
           </mat-form-field>
+=======
+              <span *ngIf="!issueForm.get('responsible').valid && issueForm.get('responsible').touched">who is taking care of the bug? If unsure put "N/A"</span>
+            </mat-error>
+          </mat-form-field>
+          <!--<mat-form-field class="example-full-width">
+              <input matInput placeholder="Id" formControlName="_id"
+                     [errorStateMatcher]="matcher">
+              <mat-error>
+                <span *ngIf="!issueForm.get('_id').valid && issueForm.get('_id').touched">Id</span>
+              </mat-error>
+            </mat-form-field>-->
+            <!--<mat-form-field class="example-full-width">
+                <input matInput placeholder="Open or Closed" formControlName="status"
+                       [errorStateMatcher]="matcher">
+                <mat-error>
+                  <span *ngIf="!issueForm.get('status').valid && issueForm.get('status').touched">Is this bug open or closed?</span>
+                </mat-error>
+              </mat-form-field>-->
+>>>>>>> 408e9537b5b8ab21c3132c8d9a5924dde28cd7c5
         <div class="button-row">
           <button type="submit" [disabled]="!issueForm.valid" mat-flat-button color="important"><mat-icon>save</mat-icon></button>
         </div>

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { Injectable } from "../../node_modules/@angular/core";
 import { HttpClient } from "../../node_modules/@angular/common/http";
+=======
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+>>>>>>> 408e9537b5b8ab21c3132c8d9a5924dde28cd7c5
 import { Task } from "./models/task";
 import { Observable } from "rxjs";
 
